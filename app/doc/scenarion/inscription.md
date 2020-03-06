@@ -14,7 +14,7 @@ Création d'un compte utilisateur:
 3. L'utilisateur rentre les informations pour la création de son compte
 4. L'application envoie les element a  fierebase
 5. L'fierebase  verifie si l'utilisateur n'est pas inscrit
-    . ERREUR : l'utilisateur est déjà inscrit :
+    * ERREUR : l'utilisateur est déjà inscrit :
         1. fierbase revenoie un message d'erreur
         2. l'application affiche une erreur
 6. fierebase renvoie un sucer a l'application
