@@ -20,7 +20,7 @@ Conection d'un  utilisateur:
         1. fierbase revenoie un message d'erreur
         2. l'application affiche une erreur
 5. L'fierebase  verifie si l'utilisateur a mis le bon mdp
-    . ERREUR : l'utilisateur est déjà inscrit :
+    * ERREUR : l'utilisateur est déjà inscrit :
         1. fierbase revenoie un message d'erreur
         2. l'application affiche une erreur
 7. fierebase renvoie un sucer a l'application
@@ -29,7 +29,7 @@ Conection d'un  utilisateur:
 
 ## Deroulement Alternatif :
 
-###Cause :
+### Cause :
 * L'application a un token
 
 1. L'utilisateur lance l'application
