@@ -11,7 +11,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dependencies-v2-{{ checksum "build.gradle" }}-{{ .Environment.CACHE_VERSION }}
+            - dependencies-v3-{{ checksum "build.gradle" }}-{{ .Environment.CACHE_VERSION }}
               # fallback to using the latest cache if no exact match is found
             - dependencies-
       - run:
@@ -21,8 +21,8 @@ jobs:
           command: ./gradlew build
 
       - save_cache:
-          paths: .gradle
-          key: dependencies-v2-{{ checksum "build.gradle" }}-{{ .Environment.CACHE_VERSION }}
+          paths: ~/.gradle
+          key: dependencies-v3-{{ checksum "build.gradle" }}-{{ .Environment.CACHE_VERSION }}
 
   testUnitaire:
     executor: android/android
@@ -31,7 +31,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - dependencies-v2-{{ checksum "build.gradle" }}-{{ .Environment.CACHE_VERSION }}
+            - dependencies-v3-{{ checksum "build.gradle" }}-{{ .Environment.CACHE_VERSION }}
             # fallback to using the latest cache if no exact match is found
             - dependencies-
       - run:
@@ -42,8 +42,14 @@ jobs:
           command: ./gradlew lint test
 
       - save_cache:
-          paths: .gradle
-          key: dependencies-v2-{{ checksum "build.gradle" }}-{{ .Environment.CACHE_VERSION }}
+          paths: ~/.gradle
+          key: dependencies-v3-{{ checksum "build.gradle" }}-{{ .Environment.CACHE_VERSION }}
+
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: app/build/reports
+          destination: reports
+            - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+                path: app/build/test-results
 
 
 workflows:
