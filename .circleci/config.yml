@@ -45,10 +45,10 @@ jobs:
           paths: ~/.gradle
           key: dependencies-v3-{{ checksum "build.gradle" }}-{{ .Environment.CACHE_VERSION }}
 
-      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+      - store_artifacts:
           path: app/build/reports
           destination: reports
-            - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+            - store_test_results:
                 path: app/build/test-results
 
 
