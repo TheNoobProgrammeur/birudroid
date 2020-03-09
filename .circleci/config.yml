@@ -9,8 +9,17 @@ jobs:
 
     steps:
       - checkout
+      - restore_cache:
+        keys:
+          - dependencies-{{ checksum "build.gradle" }}-{{ .Environment.CACHE_VERSION }}
+              # fallback to using the latest cache if no exact match is found
+          - dependencies-
       - run:
           name: chmod permissions
           command: chmod +x ./gradlew
       - run:
           command: ./gradlew build
+
+      - save_cache:
+          paths: .gradle
+          key: dependencies-{{ checksum "build.gradle" }}-{{ .Environment.CACHE_VERSION }}
