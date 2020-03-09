@@ -23,3 +23,22 @@ jobs:
       - save_cache:
           paths: .gradle
           key: dependencies-{{ checksum "build.gradle" }}-{{ .Environment.CACHE_VERSION }}
+
+  testUnitaire:
+    executor: android/android
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "build.gradle" }}-{{ .Environment.CACHE_VERSION }}
+            # fallback to using the latest cache if no exact match is found
+            - dependencies-
+
+      - run:
+          name: Run Tests
+          command: ./gradlew lint test
+
+      - save_cache:
+          paths: .gradle
+          key: dependencies-{{ checksum "build.gradle" }}-{{ .Environment.CACHE_VERSION }}
