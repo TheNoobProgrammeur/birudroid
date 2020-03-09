@@ -4,10 +4,6 @@
 
 Consultation de l'ensemble des bières disponible dans l'aplication
 
-## Prérequis :
-
-* [Scenario 2]- Connection
-
 ## Résultat attendu :
 
 Affichage de la liste des bières disponible
