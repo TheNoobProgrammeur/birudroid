@@ -1,4 +1,4 @@
-#  Scenario 2 - Connection d'un utilisateur
+#  Scenario 2 - Connexion d'un utilisateur
 
 ##  Description  : 
 Connection de l'utilisateur à l'application 
