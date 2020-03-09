@@ -1,19 +1,19 @@
 #  Scenario 2 - Connexion d'un utilisateur
 
 ##  Description  : 
-Connection de l'utilisateur à l'application 
+Connexion de l'utilisateur à l'application 
 
 ## Prérequis :
 * Scenario 1 - Creation d'un compte 
 
 ## Résultat attendu :
-Connection d'un utilisateur
+Connexion d'un utilisateur
 
 ## Déroulement :
 
 1. L'utilisateur lance l'application
-2. L'utilisateur arrive sur l'écran de connection
-3. L'utilisateur rentre ses informations de connection
+2. L'utilisateur arrive sur l'écran de connexion
+3. L'utilisateur rentre ses informations de connexion
 4. L'utilisateur appuie sur le bouton "Connexion"
 5. L'application envoie les elements à l'API
 6. L'API verifie les informations de connexion
