@@ -39,7 +39,34 @@ jobs:
           command: chmod +x ./gradlew
       - run:
           name: Run Tests
-          command: ./gradlew lint test
+          command: ./gradlew test
+
+      - save_cache:
+          paths: ~/.gradle
+          key: dependencies-v3-{{ checksum "build.gradle" }}-{{ .Environment.CACHE_VERSION }}
+
+      - store_artifacts:
+          path: app/build/reports
+          destination: reports
+      - store_test_results:
+          path: app/build/test-results
+          
+  lint:
+    executor: android/android
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dependencies-v3-{{ checksum "build.gradle" }}-{{ .Environment.CACHE_VERSION }}
+            # fallback to using the latest cache if no exact match is found
+            - dependencies-
+      - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
+      - run:
+          name: Run Tests
+          command: ./gradlew lint
 
       - save_cache:
           paths: ~/.gradle
@@ -58,5 +85,8 @@ workflows:
     jobs:
       - build
       - test:
+          requires:
+            - build
+      - lint:
           requires:
             - build
