@@ -1,0 +1,8 @@
+@startuml
+object user{
+    id int
+    name String
+    email String
+    biereFavorie int[]
+}
+@enduml
