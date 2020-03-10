@@ -26,3 +26,13 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+plugins {
+    id("io.gitlab.arturbosch.detekt").version("[version]")
+}
+
+detekt {
+    toolVersion = "[version]"
+    source = files("src/main/kotlin")
+    config = files("path/to/config.yml")
+}
