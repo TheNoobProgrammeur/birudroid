@@ -78,14 +78,14 @@ jobs:
       - store_test_results:
           path: app/build/test-results
 
-workflows:
-  version: 2
-  build-test-and-deploy:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
-      - lint:
-          requires:
-            - build
+#workflows:
+#  version: 2
+#  build-test-and-deploy:
+#    jobs:
+#      - build
+#      - test:
+#          requires:
+#            - build
+#      - lint:
+#          requires:
+#            - build
