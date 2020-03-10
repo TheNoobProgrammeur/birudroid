@@ -2,7 +2,7 @@
 
 ## Objectifes de la BDD
 
-La base de donnée oras pour but de sauvegarder les donners suivante :
+La base de donnée auras pour but de sauvegarder les donners suivante :
 * Les profiles utilisateur
 * Les bierers
 * Les marques de bieres
@@ -37,23 +37,32 @@ _representation de la classe user_
       }
     },
     "uid2": {
-    ...
+    
     }
 }
 ```
 
 ## Bieres
 
+![biere](img/biere.png)
+
 ```json
 {
     "biers":{
       "bid1":{
         "name": "la bête",
-        WIP
+        "type": "Ambre",
+        "description": "TODO",
+        "moyenne": 2.5,
+        "mid": "mid7",
+        "comentaire":[{
+          "uid":1,
+          "commentaire":"TODO"
+        }]
       }
     },
     "bid2": {
-    ...
+  
     }
 }
 ```

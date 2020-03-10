@@ -1,0 +1,16 @@
+@startuml
+object Biere{
+    id int
+    name String
+    type String
+    description String
+    moyenne int
+    mid int
+    comentaire Comentaire[]
+}
+
+object Comentaire{
+    idAuteur int
+    comentaire String
+}
+@enduml
