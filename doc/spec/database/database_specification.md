@@ -8,7 +8,7 @@ La base de donnée auras pour but de sauvegarder les donners suivante :
 * Les marques de bière
 
 Pour ce projet nous avons choisis d'utiliser la console fierbase.  
-Nousutiliserons donc le service d'authentification de fierbase.  
+Nous utiliserons donc le service d'authentification de fierbase.  
 Cela nous permetra à ne pas à avoir a gérer les identifients des utilisateur.
 
 La BDD fierbase est une base de donnée plat.  
@@ -16,8 +16,8 @@ Les collections seront donc représentées en `Json`.
 
 :warning:
 
-_Les exemples sont doner à titre indicatif, il peut y avoir des
-changement entres les exemples et l'implementation_
+_Les exemples sont donnés  à titre indicatif,
+il peut y avoir des changements entres les exemples et l'implementation_
 
 _Dans les exemples qui suivront :_
 * _uidx est un id utilisateur_
@@ -55,15 +55,14 @@ résultat de chaque méthode d'authentification.
 
 ## Bières :beer:
 
-Les bières seront identifier par un ID. Chaque bière sera définie par
+Les bières seront identifiées  par un ID.  
+Chaque bière sera définie par
 plusieurs caractéristiques.  
-Elle auras une liste de comentaire (voir schéma objet ci-dessous). Pour
-le moment il n'auras pas de suivit dans les commentaires.  
-Un comentaire ne pourras pas repondre directement a un autre
-commentaire.
+Elle aura une liste de commentaires (voir schéma objet ci-dessous).  
+Pour le moment, il n'aura pas de suivi dans les commentaires.  
+Un commentaire ne pourra pas répondre directement à un autre commentaire.
 
-Chaque bières aurra aussi un id de marque `mid` pour le relier à une
-marque de bière.
+Chaque bières aura aussi un id de marque `mid` pour le relier à une marque de bière.
 
 ```json
 {
@@ -93,9 +92,10 @@ _Representation de l'objet Bière_
 ## Marque :alembic:
 
 Une marque de bière est la marque qui fabrique une bière.  
-Une marque sera défini par son id `mid`. Une marque pourra fabrique plusieur bière.
-Une marque peux avoir une ou plusieur braserie. Ces braserie seront
-stocker dans une liste.
+Une marque sera définie par son id `mid`.  
+Une marque pourra fabriquer plusieurs bières.  
+Une marque peut avoir une ou plusieurs brasseries.  
+Ces brasseries seront stockées dans une liste.
 
 ```json
 {
