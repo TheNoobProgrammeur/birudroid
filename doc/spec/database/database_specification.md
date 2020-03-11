@@ -1,4 +1,4 @@
-# :fire: :fire: :fire: Specification de la base de données Firebase :fire: :fire: :fire:
+# :fire: Specification de la base de données Firebase :fire:
 
 ## :bow_and_arrow:  Objectifes de la BDD :bow_and_arrow:
 
@@ -23,8 +23,6 @@ _Dans les exemples qui suivront :_
 * _uidx est un id utilisateur_
 * _bidx est un id d'une biere_
 * _midx est un id d'une marque de biere_
-
-:warning:
 
 ## Utilisateur :person_with_blond_hair:
 
