@@ -100,7 +100,7 @@ stocker dans une liste.
 ```json
 {
   "marque": {
-    "mid1"{ // Id de la marque
+    "mid1":{ // Id de la marque
       // si id est un string pour cette exemple au finale ce sera un uuid
       "name": "TODO", // nom  de la marque 
       "Lieux": ["@ braserie 1"], // liste des adds des braserie
