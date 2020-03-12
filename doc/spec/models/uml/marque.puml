@@ -1,0 +1,12 @@
+@startuml Class Marque
+
+class Marque {
+    - id int
+    - name String
+    - lieux MutableList<String>
+    - biereProduit MutableList<Biere>
+    - nbBiere int
+    - description String
+}
+
+@enduml
