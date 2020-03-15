@@ -1,9 +1,0 @@
-@startuml
-object Marque{
-    id int
-    nom String
-    lieux String[]
-    nbBiere int
-    description String
-}
-@enduml

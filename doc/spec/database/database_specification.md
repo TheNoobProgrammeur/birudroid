@@ -1,23 +1,23 @@
-# :fire: Specification de la base de données Firebase :fire:
+# :fire: Spécifications de la base de données Firebase :fire:
 
 ## :bow_and_arrow:  Objectifes de la BDD :bow_and_arrow:
 
-La base de donnée auras pour but de sauvegarder les donners suivante :
-* Les profiles utilisateur
+La base de donnée aura pour but de sauvegarder les données suivantes :
+* Les utilisateurs
 * Les bières
 * Les marques de bière
 
-Pour ce projet nous avons choisis d'utiliser la console fierbase.  
-Nous utiliserons donc le service d'authentification de fierbase.  
-Cela nous permetra à ne pas à avoir a gérer les identifients des utilisateur.
+Pour ce projet nous avons choisi d'utiliser Firebase.  
+Nous utiliserons le service d'authentification intégré à Firebase.  
+Cela nous permettra de ne pas avoir à gérer l'identifications des utilisateurs.
 
-La BDD fierbase est une base de donnée plat.  
+La base de données Firebase est une base de données à plat(NoSQL).  
 Les collections seront donc représentées en `Json`.
 
 :warning:
 
-_Les exemples sont donnés  à titre indicatif,
-il peut y avoir des changements entres les exemples et l'implementation_
+_Les exemples sont donnés à titre indicatif,
+il peut y avoir des changements entre les exemples et l'implémentation_
 
 _Dans les exemples qui suivront :_
 * _uidx est un id utilisateur_
@@ -26,87 +26,204 @@ _Dans les exemples qui suivront :_
 
 ## Utilisateur :person_with_blond_hair:
 
-Chaque utilisateur authentifié a un Firebase `uid` qui est  
-unique parmi tous les fournisseurs et est retourné dans le  
-résultat de chaque méthode d'authentification.
+Chaque utilisateur authentifié a uuid unique généré par Firebase, il est retourné dans le résultat de chaque méthode d'authentification.
+La collection `Users` permet de stocker ses informations tel que son nom d'utilisateur, son mail et ses bières favorites.
+
+### Schéma de la collection **User**
 
 ```json
 {
-    "users":{ // Colection Users
-      "uid1":{ // ID de l'utilisateur
-      //  si id est un string pour cette exemple au finale ce sera un uuid
-        "name": "toto", // Nom  de l'utilisateur 
-        "email": "toto@toto.gouv", // email de contacte 
-        "biere_favorie": [ // liste des id des biere fav de l'utilisateur 
-            "bid1",
-            "bid7"
-        ]
-      }
-    },
-    "uid2": {
-    
-    }
-}
-```
-
-![user](img/user.png) \ _representation de l'objet user_
-
-## Bières :beer:
-
-Les bières seront identifiées  par un ID.  
-Chaque bière sera définie par
-plusieurs caractéristiques.  
-Elle aura une liste de commentaires (voir schéma objet ci-dessous).  
-Pour le moment, il n'aura pas de suivi dans les commentaires.  
-Un commentaire ne pourra pas répondre directement à un autre commentaire.
-
-Chaque bières aura aussi un id de marque `mid` pour le relier à une marque de bière.
-
-```json
-{
-    "biers":{ // Colection Bière
-      "bid1":{ // Id de la bière
-      // si id est un string pour cette exemple au finale ce sera un uuid
-        "name": "la bête", // nom de la bière
-        "type": "Ambre", // Type de la bière
-        "description": "TODO", // Description de la bière
-        "moyenne": 2.5, // Note sur 5 de la bière
-        "mid": "mid7", // Id de ma marque qui fabrique cette bière
-        "comentaire":[{ // liste des commentaire 
-          "uid":1, // id de l'utilisateur qui a ecrit ce commentaire
-          "commentaire":"TODO" // commentaire
-        }]
-      }
-    },
-    "bid2": {
-  
-    }
-}
-```
-
-![biere](img/biere.png)  
-_Representation de l'objet Bière_
-
-## Marque :alembic:
-
-Une marque de bière est la marque qui fabrique une bière.  
-Une marque sera définie par son id `mid`.  
-Une marque pourra fabriquer plusieurs bières.  
-Une marque peut avoir une ou plusieurs brasseries.  
-Ces brasseries seront stockées dans une liste.
-
-```json
-{
-  "marque": {
-    "mid1":{ // Id de la marque
-      // si id est un string pour cette exemple au finale ce sera un uuid
-      "name": "TODO", // nom  de la marque 
-      "Lieux": ["@ braserie 1"], // liste des adds des braserie
-      "nbBiere":1, // nombre de bière que la marque propose
-      "description":"TODO" // description
+  "users":{
+    "type": "array",
+    "items": {
+      "type": "object",
+      "patternProperties":{
+        "[0-9A-z]{28}": {
+          "type": "object",
+          "properties":{
+            "username": { "type" : "string" },
+            "email": { "type" : "string" },
+            "favorite_beer": {
+              "type": "array",
+              "items":{
+                "type": "string",
+                "pattern": "[0-9A-z]{28}",
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": ["username", "email"]
     }
   }
 }
 ```
 
-![marque](img/marque.png)
+### Exemple :
+
+```json
+{
+    "users":[
+      "uid1":{
+        "username": "toto", 
+        "email": "toto@toto.gouv", 
+        "favorite_beer": [
+            "bid1",
+            "bid7"
+        ]
+      },
+      "uid2": {}
+    ]
+}
+```
+
+## Bières :beer:
+
+Les bières seront identifiées par un uuid.  
+Informations liées à une bière:
+  * nom de la bière
+  * type de bière (Ex: Brune, Blonde, IPA...)
+  * descrition
+  * degré d'alcool
+  * moyenne des notes données par la communauté
+  * marque de la bière
+  * information sur là où a été brassé la bière
+  * commentaires de la communauté
+
+Dans un premier temps les commentaires seront présent sans possibilité de réponse, aucun commentaire sera liée à un autre. 
+
+```json
+{
+  "beers":{
+    "type": "array",
+    "items": {
+      "type": "object",
+      "patternProperties":{
+        "[0-9A-z]{28}": {
+          "type": "object",
+          "properties":{
+            "name": { "type" : "string" },
+            "type": { "type" : "string" },
+            "description": { "type" : "string" },
+            "degree": {
+              "type": "number",
+              "minimum": 0
+            },
+            "average": { 
+              "type" : "number",
+              "minimum": 0,
+              "maximum": 5
+            },
+            "brand_id": { 
+              "type": "string",
+              "pattern": "[0-9A-z]{28}" 
+            },
+            "brewery": {
+              "type" : "object",
+              "properties": {
+                "name": { "type" : "string" },
+                "address": { "type" : "string" },
+                "creation_date": { 
+                  "type" : "string",
+                  "format": "date-time" 
+                  }, 
+              },
+              "required": ["name", "address", "creation_date"],
+            },
+            "comments": {
+              "type": "array",
+              "items":{
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type" : "string",
+                    "pattern": "[0-9A-z]{28}"
+                  },
+                  "comment" : { "type" : "string"}
+                },
+                "required" : ["user_id", "comment"]
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": ["name", "type", "description", "degree"]
+    }
+  }
+}
+```
+
+### Exemple :
+
+```json
+{
+  "beers":{
+    "bid1":{
+      "name": "la bête",
+      "type": "Ambre",
+      "description": "TODO",
+      "degree": 8,
+      "average": 2.5,
+      "brand_id": "mid7",
+      "brewery": {
+        "name" : "brasserie 1",
+        "address":"adr 1",
+        "creation_date":1990
+      },
+      "comments":[{
+        "user_id": "uid1",
+        "comment":"TODO"
+      }]
+    },
+    "bid2": {}
+  }
+}
+```
+
+## Marque :alembic:
+
+Les marques seront identifiées par un uuid.
+Une marque de bière est l'entité qui fabrique une bière.
+Information liées à une marque:
+* nom
+* nombre de bières proposées
+* description
+Des informations complémentaires pourront être ajoutées par la suite.  
+
+```json
+{
+  "brand": {
+    "type": "array",
+    "items":{
+      "type": "object",
+      "patternProperties":{
+        "[0-9A-z]{28}": {
+          "type": "object",
+          "properties":{
+            "name" : { "type": "string" },
+            "nb_beer": { "type": "interger" },
+            "description": { "type": "string" }
+          },
+          "required": ["name", "nb_beer", "description"]
+        }
+      }
+    }
+  }
+}
+```
+
+Exemple :
+
+```json
+{
+  "brand": {
+    "mid1":{
+      "name": "Delirium",
+      "nb_beer":10,
+      "description":"TODO"
+    }
+  }
+}
+```
