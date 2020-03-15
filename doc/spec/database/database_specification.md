@@ -64,17 +64,17 @@ La collection `Users` permet de stocker ses informations tel que son nom d'utili
 
 ```json
 {
-    "users":[
-      "uid1":{
-        "username": "toto", 
-        "email": "toto@toto.gouv", 
-        "favorite_beer": [
-            "bid1",
-            "bid7"
-        ]
-      },
-      "uid2": {}
-    ]
+  "users":{
+    "uid1":{
+      "username": "toto", 
+      "email": "toto@toto.gouv", 
+      "favorite_beer": [
+          "bid1",
+          "bid7"
+      ]
+    },
+    "uid2":{}
+  }
 }
 ```
 
@@ -92,6 +92,8 @@ Informations liées à une bière:
   * commentaires de la communauté
 
 Dans un premier temps les commentaires seront présent sans possibilité de réponse, aucun commentaire sera liée à un autre. 
+
+### Schéma de la collection **Beers**
 
 ```json
 {
@@ -191,6 +193,8 @@ Information liées à une marque:
 * nombre de bières proposées
 * description
 Des informations complémentaires pourront être ajoutées par la suite.  
+
+### Schéma de la collection **Brand**
 
 ```json
 {
