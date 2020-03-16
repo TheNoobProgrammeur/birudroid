@@ -1,8 +1,8 @@
-@startuml Class Utilisateur
-class Utilisateur {
+@startuml Class User
+class User {
     - id int
     - name String
     - mail String
-    - biereListe MutableList<Biere>
+    - beerList MutableList<Beer>
 }
 @enduml

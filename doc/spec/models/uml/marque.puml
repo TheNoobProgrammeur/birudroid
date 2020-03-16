@@ -1,9 +1,8 @@
-@startuml Class Marque
+@startuml Class Brand
 
-class Marque {
+class Brand {
     - id int
     - name String
-    - lieux MutableList<String>
     - biereProduit MutableList<Biere>
     - nbBiere int
     - description String
