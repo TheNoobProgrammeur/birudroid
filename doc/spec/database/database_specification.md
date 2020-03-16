@@ -87,7 +87,7 @@ Informations liées à une bière:
   * descrition
   * degré d'alcool
   * moyenne des notes données par la communauté
-  * marque de la bière
+  * marque de la bière (nom et description)
   * information sur là où a été brassé la bière
   * commentaires de la communauté
 
@@ -117,9 +117,13 @@ Dans un premier temps les commentaires seront présent sans possibilité de rép
               "minimum": 0,
               "maximum": 5
             },
-            "brand_id": { 
-              "type": "string",
-              "pattern": "[0-9A-z]{28}" 
+            "brand": { 
+              "type": "object",
+              "properties": {
+                "name": { "type": "string"},
+                "description": { "type" : "string"}
+              },
+              "required":["name", "description"]
             },
             "brewery": {
               "type" : "object",
@@ -168,7 +172,10 @@ Dans un premier temps les commentaires seront présent sans possibilité de rép
       "description": "TODO",
       "degree": 8,
       "average": 2.5,
-      "brand_id": "mid7",
+      "brand": {
+        "name": "Delirium",
+        "description": "Bières de caractères" 
+      },
       "brewery": {
         "name" : "brasserie 1",
         "address":"adr 1",
@@ -180,54 +187,6 @@ Dans un premier temps les commentaires seront présent sans possibilité de rép
       }]
     },
     "bid2": {}
-  }
-}
-```
-
-## Marque :alembic:
-
-Les marques seront identifiées par un uuid.
-Une marque de bière est l'entité qui fabrique une bière.
-Information liées à une marque:
-* nom
-* nombre de bières proposées
-* description
-Des informations complémentaires pourront être ajoutées par la suite.  
-
-### Schéma de la collection **Brand**
-
-```json
-{
-  "brand": {
-    "type": "array",
-    "items":{
-      "type": "object",
-      "patternProperties":{
-        "[0-9A-z]{28}": {
-          "type": "object",
-          "properties":{
-            "name" : { "type": "string" },
-            "nb_beer": { "type": "interger" },
-            "description": { "type": "string" }
-          },
-          "required": ["name", "nb_beer", "description"]
-        }
-      }
-    }
-  }
-}
-```
-
-Exemple :
-
-```json
-{
-  "brand": {
-    "mid1":{
-      "name": "Delirium",
-      "nb_beer":10,
-      "description":"TODO"
-    }
   }
 }
 ```
