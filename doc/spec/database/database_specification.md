@@ -117,6 +117,10 @@ Dans un premier temps les commentaires seront présent sans possibilité de rép
               "minimum": 0,
               "maximum": 5
             },
+            "nb_vote":{
+              "type" : "integer",
+              "minimum" : 0
+            },
             "brand": { 
               "type": "object",
               "properties": {
