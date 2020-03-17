@@ -213,20 +213,12 @@ Pour éviter une trop grande surcharge lors de l'importation d'une bière nous a
 
 ```json
 {
-<<<<<<< HEAD
   "comment":{
     "idMessage":{
       "idUser":"user1",
       "idBeer":"beer1",
       "message":"TODO",
       "creationDate":"11-08-2020"
-=======
-  "comments":{
-    "cid1":{
-      "idUser":"uid1",
-      "idBeer":"bid1",
-      "message":"TODO"
->>>>>>> database_firebase
     }
   }
 }
