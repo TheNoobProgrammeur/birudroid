@@ -195,7 +195,7 @@ Dans un premier temps les commentaires seront présent sans possibilité de rép
 }
 ```
 
-### colection anexe :
+### colection anexe ℹ️ :
 
 Pour amelioré la cohérance des données et leur filtrage nous avons sortie certain parametre de la colection biére pour crée des colection propre.
 
@@ -203,7 +203,37 @@ Pour amelioré la cohérance des données et leur filtrage nous avons sortie cer
 * Marque de bière
 * Braserie de la bière
 
+#### Type de bière :
 
+```json
+{
+    "typeBeer":{
+        "type":"object",
+        "patternProperties":{
+            "[0-9A-z]{28}":{
+                "properties":{
+                    "name":{"type":"string"}
+                },
+                "required":["name"]
+            }
+        }
+    }
+}
+```
+##### Exemple :
+
+```json
+
+{
+    "typeBeer":{
+        "typeID":{
+            "name":"Blonde"
+        }
+    }
+}
+
+
+```
 
 
 ## Comentaire sur une bière
