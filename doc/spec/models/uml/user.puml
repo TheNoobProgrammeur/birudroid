@@ -1,6 +1,6 @@
 @startuml Class User
 class User {
-    - id int
+    - id String
     - name String
     - mail String
     - beerList MutableList<Beer>

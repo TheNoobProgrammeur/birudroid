@@ -1,0 +1,44 @@
+@startuml Schema Objet
+
+class Beer{
+    - id String
+    - name String
+    - description String
+    - brand Brand
+    - type TypeBeer
+    - brewery Brewery
+    - average Float
+    - nbVote Int
+    - comments MutableList<Comment>
+}
+
+enum TypeBeer
+
+class Brand{
+    - name String
+    - description String
+}
+class Comment{
+    - idAuthor String
+    - comment String
+}
+
+class Brewery{
+    - name String
+    - description String
+} 
+
+class User {
+    - id String
+    - name String
+    - mail String
+    - beerList MutableList<Beer>
+}
+
+TypeBeer - Beer
+Brand --- "0:1" Beer
+Brewery --- "0:n" Beer
+Comment --- "0:n" Beer
+User "0:n" --- Beer
+
+@enduml
