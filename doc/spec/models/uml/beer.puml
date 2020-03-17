@@ -1,0 +1,13 @@
+@startuml Class Beer
+class Beer{
+    - id String
+    - name String
+    - description String
+    - brand Brand
+    - type TypeBeer
+    - brewery Brewery
+    - average Float
+    - nbVote Int
+    - comments MutableList<Comment>
+}
+@enduml

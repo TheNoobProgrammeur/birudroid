@@ -1,11 +1,6 @@
 @startuml Class Brand
-
 class Brand {
-    - id int
     - name String
-    - biereProduit MutableList<Biere>
-    - nbBiere int
     - description String
 }
-
 @enduml
