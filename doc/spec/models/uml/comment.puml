@@ -1,0 +1,9 @@
+@startuml Class Comment
+class Comment {
+    - id String
+    - idUser String
+    - idBeer String
+    - date DateTime
+    - message String
+}
+@enduml

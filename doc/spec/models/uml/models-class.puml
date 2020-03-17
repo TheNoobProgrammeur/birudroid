@@ -1,44 +1,72 @@
 @startuml Schema Objet
 
-class Beer{
+class BeerDetail{
     - id String
     - name String
     - description String
-    - brand Brand
-    - type TypeBeer
+    - degree Float
+    - brandId Brand
+    - typeBeerId TypeBeer
     - brewery Brewery
     - average Float
     - nbVote Int
     - comments MutableList<Comment>
+    + changeAverage(Float newNote)
 }
 
-enum TypeBeer
+class Beer{
+    - id String
+    - name String
+    - degree Float
+    - brandId Brand
+    - typeBeerId TypeBeer
+    - average Float
+}
 
-class Brand{
+
+class TypeBeer{
+    - id String
+    - name String
+}
+
+class Brand {
+    - id String
     - name String
     - description String
 }
-class Comment{
-    - idAuthor String
-    - comment String
+
+class Comment {
+    - id String
+    - idUser String
+    - idBeer String
+    - date DateTime
+    - message String
 }
 
-class Brewery{
+class Brewery {
     - name String
-    - description String
-} 
+    - adress String
+    - creationDate DateTime
+}
 
 class User {
     - id String
     - name String
     - mail String
     - beerList MutableList<Beer>
+    + addCommentToBeer(String beerId)
+    + addMarkToBeer(String beerId)
 }
 
-TypeBeer - Beer
-Brand --- "0:1" Beer
-Brewery --- "0:n" Beer
-Comment --- "0:n" Beer
-User "0:n" --- Beer
+BeerDetail <|-- Beer
+
+TypeBeer --o "1:1" BeerDetail
+Brand --o "0:1" BeerDetail
+Brewery --* "0:n" BeerDetail
+Comment --* "0:n" BeerDetail
+User "0:n" o-- BeerDetail
+
+TypeBeer --o "1:1" Beer
+Brand --o "0:1" Beer
 
 @enduml

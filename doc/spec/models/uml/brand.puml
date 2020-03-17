@@ -1,5 +1,6 @@
 @startuml Class Brand
 class Brand {
+    - id String
     - name String
     - description String
 }

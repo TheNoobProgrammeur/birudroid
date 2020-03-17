@@ -3,8 +3,9 @@ class Beer{
     - id String
     - name String
     - description String
-    - brand Brand
-    - type TypeBeer
+    - degree Float
+    - brandId Brand
+    - typeBeerId TypeBeer
     - brewery Brewery
     - average Float
     - nbVote Int
