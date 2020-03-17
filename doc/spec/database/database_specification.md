@@ -192,11 +192,15 @@ Pour éviter une trop grande surcharge lors de l'importation d'une bière nous a
                   },
                   "message":{
                     "type":"string"
-                  }
+                  },
+                  "creationDate": { 
+                    "type" : "string",
+                    "format": "date-time" 
+                },
               }
           }
       },
-      "required": ["idUser","idBeer","message"],
+      "required": ["idUser","idBeer","message","creationDate"],
   }
 }
 
@@ -210,7 +214,8 @@ Pour éviter une trop grande surcharge lors de l'importation d'une bière nous a
     "idMessage":{
       "idUser":"user1",
       "idBeer":"beer1",
-      "message":"TODO"
+      "message":"TODO",
+      "creationDate":"11-08-2020"
     }
   }
 }
