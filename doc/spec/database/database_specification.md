@@ -23,6 +23,9 @@ _Dans les exemples qui suivront :_
 * _uidx est un id utilisateur_
 * _bidx est un id d'une biere_
 * _midx est un id d'une marque de biere_
+* _tidx est un id de type de bière_
+* _bridx est un id de marque_
+* _cidx est un id de commentaire_ 
 
 ## Utilisateur :person_with_blond_hair:
 
@@ -34,28 +37,25 @@ La collection `Users` permet de stocker ses informations tel que son nom d'utili
 ```json
 {
   "users":{
-    "type": "array",
-    "items": {
-      "type": "object",
-      "patternProperties":{
-        "[0-9A-z]{28}": {
-          "type": "object",
-          "properties":{
-            "username": { "type" : "string" },
-            "email": { "type" : "string" },
-            "favoriteBeer": {
-              "type": "array",
-              "items":{
-                "type": "string",
-                "pattern": "[0-9A-z]{28}",
-              }
+    "type": "object",
+    "patternProperties":{
+      "[0-9A-z]{28}": {
+        "type": "object",
+        "properties":{
+          "username": { "type" : "string" },
+          "email": { "type" : "string" },
+          "favoriteBeer": {
+            "type": "array",
+            "items":{
+              "type": "string",
+              "pattern": "[0-9A-z]{28}",
             }
-          },
-          "additionalProperties": false
-        }
-      },
-      "required": ["username", "email"]
-    }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": ["username", "email"]
   }
 }
 ```
@@ -98,54 +98,51 @@ Dans un premier temps les commentaires seront présent sans possibilité de rép
 ```json
 {
   "beers":{
-    "type": "array",
-    "items": {
-      "type": "object",
-      "patternProperties":{
-        "[0-9A-z]{28}": {
-          "type": "object",
-          "properties":{
-            "name": { "type" : "string" },
-            "typeBeerId": { 
-              "type" : "string" ,
-              "pattern" : "[0-9A-z]{28}"
-            },
-            "description": { "type" : "string" },
-            "degree": {
-              "type": "number",
-              "minimum": 0
-            },
-            "average": { 
-              "type" : "number",
-              "minimum": 0,
-              "maximum": 5
-            },
-            "nbVote":{
-              "type" : "integer",
-              "minimum" : 0
-            },
-            "brandId": { 
-              "type":"string",
-              "pattern" : "[0-9A-z]{28}" 
-            },
-            "brewery:":{
-              "type" : "object",
-              "properties": {
-                "name": { "type" : "string" },
-                "address": { "type" : "string" },
-                "creationDate": { 
-                    "type" : "string",
-                    "format": "date-time" 
-                },
-              } 
-            }
+    "type": "object",
+    "patternProperties":{
+      "[0-9A-z]{28}": {
+        "type": "object",
+        "properties":{
+          "name": { "type" : "string" },
+          "typeBeerId": { 
+            "type" : "string" ,
+            "pattern" : "[0-9A-z]{28}"
           },
-          "additionalProperties": false
-        }
-      },
-      "required": ["name", "type", "description", "degree"]
+          "description": { "type" : "string" },
+          "degree": {
+            "type": "number",
+            "minimum": 0
+          },
+          "average": { 
+            "type" : "number",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "nbVote":{
+            "type" : "integer",
+            "minimum" : 0
+          },
+          "brandId": { 
+            "type":"string",
+            "pattern" : "[0-9A-z]{28}" 
+          },
+          "brewery:":{
+            "type" : "object",
+            "properties": {
+              "name": { "type" : "string" },
+              "address": { "type" : "string" },
+              "creationDate": { 
+                  "type" : "string",
+                  "format": "date-time" 
+              },
+            } 
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": ["name", "type", "description","degree"]
     }
-  }
 }
 ```
 
@@ -156,13 +153,17 @@ Dans un premier temps les commentaires seront présent sans possibilité de rép
   "beers":{
     "bid1":{
       "name": "la bête",
-      "type": "typeId",
+      "type": "tid2",
       "description": "TODO",
       "degree": 8,
       "average": 2.5,
       "nbVote": 5,
-      "brandId": "brandID",
-      "breweryId": "brewaryID"
+      "brandId": "brid1",
+      "brewery": {
+        "name": "brasserie",
+        "adress": "12 rue du Lys",
+        "creationDate": "01-01-2001"
+      }
     },
     "bid2": {}
   }
@@ -206,10 +207,10 @@ Pour éviter une trop grande surcharge lors de l'importation d'une bière nous a
 
 ```json
 {
-  "comment":{
-    "idMessage":{
-      "idUser":"user1",
-      "idBeer":"beer1",
+  "comments":{
+    "cid1":{
+      "idUser":"uid1",
+      "idBeer":"bid1",
       "message":"TODO"
     }
   }
@@ -222,7 +223,6 @@ Pour améliorer la cohérence des données et leur filtrage nous avons sorti cer
 
 * Type de bière
 * Marque de bière
-* Braserie de la bière
 
 ## Type de bière :
 
@@ -230,65 +230,62 @@ Pour améliorer la cohérence des données et leur filtrage nous avons sorti cer
 
 ```json
 {
-    "typeBeer":{
-        "type":"object",
-        "patternProperties":{
-            "[0-9A-z]{28}":{
-                "properties":{
-                    "name":{"type":"string"}
-                },
-                "required":["name"]
-            }
+  "typeBeer":{
+    "type":"object",
+    "patternProperties":{
+        "[0-9A-z]{28}":{
+            "properties":{
+                "name":{"type":"string"}
+            },
+            "required":["name"]
         }
     }
+  }
 }
 ```
 ### Exemple :
 
 ```json
-
 {
-    "typeBeer":{
-        "typeID":{
-            "name":"Blonde"
-        }
-    }
+  "typeBeer":{
+      "tid1":{
+          "name":"Blonde"
+      }
+  }
 }
-
-
 ```
 
 ## Marque de la bière
 
-### Schéma de la collection **Brand**
+### Schéma de la collection **Brands**
 
 ```json
 {
-    "brand": { 
-        "type": "object",
-        "patternProperties":{
-            "[0-9A-z]{28}":{
-                "properties": {
-                    "name": { "type": "string"},
-                    "description": { "type" : "string"}
-                },
-                "required":["name", "description"]
-            }
+  "brands": { 
+    "type": "object",
+    "patternProperties":{
+        "[0-9A-z]{28}":{
+            "properties": {
+                "name": { "type": "string"},
+                "description": { "type" : "string"}
+            },
+            "required":["name", "description"]
         }
     }
+  }
 }
 ```
 
-### Exemple :
+#### Exemple :
 
 ```json
 {
-    "brand":{
-        "brandId":{
-            "name":"Delirium",
-            "description":"Bières de caractères"
-        }
-    }
+  "brand":{
+      "brid1":{
+          "name":"Delirium",
+          "description":"Bières de caractères"
+      }
+  }
 }
 
 ```
