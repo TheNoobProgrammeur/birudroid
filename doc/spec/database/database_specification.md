@@ -106,7 +106,7 @@ Dans un premier temps les commentaires seront présent sans possibilité de rép
           "type": "object",
           "properties":{
             "name": { "type" : "string" },
-            "typeBeer": { "type" : "string" },
+            "typeBeer": { "type" : "string" , "pattern" : "[0-9A-z]{28}"},
             "description": { "type" : "string" },
             "degree": {
               "type": "number",
@@ -121,40 +121,8 @@ Dans un premier temps les commentaires seront présent sans possibilité de rép
               "type" : "integer",
               "minimum" : 0
             },
-            "brand": { 
-              "type": "object",
-              "properties": {
-                "name": { "type": "string"},
-                "description": { "type" : "string"}
-              },
-              "required":["name", "description"]
-            },
-            "brewery": {
-              "type" : "object",
-              "properties": {
-                "name": { "type" : "string" },
-                "address": { "type" : "string" },
-                "creation_date": { 
-                  "type" : "string",
-                  "format": "date-time" 
-                  }, 
-              },
-              "required": ["name", "address", "creation_date"],
-            },
-            "comments": {
-              "type": "array",
-              "items":{
-                "type": "object",
-                "properties": {
-                  "user_id": {
-                    "type" : "string",
-                    "pattern": "[0-9A-z]{28}"
-                  },
-                  "comment" : { "type" : "string"}
-                },
-                "required" : ["user_id", "comment"]
-              }
-            }
+            "brand": { "type":"string", "pattern" : "[0-9A-z]{28}" },
+            "brewery": { "type":"string", "pattern" : "[0-9A-z]{28}" },
           },
           "additionalProperties": false
         }
@@ -172,23 +140,12 @@ Dans un premier temps les commentaires seront présent sans possibilité de rép
   "beers":{
     "bid1":{
       "name": "la bête",
-      "type": "Ambre",
+      "type": "typeId",
       "description": "TODO",
       "degree": 8,
       "average": 2.5,
-      "brand": {
-        "name": "Delirium",
-        "description": "Bières de caractères" 
-      },
-      "brewery": {
-        "name" : "brasserie 1",
-        "address":"adr 1",
-        "creation_date":1990
-      },
-      "comments":[{
-        "user_id": "uid1",
-        "comment":"TODO"
-      }]
+      "brand": "brandID",
+      "brewery": "brewaryID"
     },
     "bid2": {}
   }
@@ -235,5 +192,107 @@ Pour amelioré la cohérance des données et leur filtrage nous avons sortie cer
 
 ```
 
+#### Marque de la bière
+
+```json
+{
+    "brand": { 
+        "type": "object",
+        "patternProperties":{
+            "[0-9A-z]{28}":{
+                "properties": {
+                    "name": { "type": "string"},
+                    "description": { "type" : "string"}
+                },
+                "required":["name", "description"]
+            }
+        }
+    }
+}
+```
+
+##### Exemple :
+
+```json
+{
+    "brand":{
+        "brandId":{
+            "name":"Delirium",
+            "description":"Bières de caractères"
+        }
+    }
+}
+
+```
+
+#### Braserie de la bière 
+
+```json
+{
+  "brewery": {
+    "type" : "object",
+    "patternProperties":{
+        "[0-9A-z]{28}":{
+            "properties": {
+              "name": { "type" : "string" },
+              "address": { "type" : "string" },
+              "creation_date": { 
+                  "type" : "string",
+                  "format": "date-time" 
+              }, 
+            }
+        }
+    },
+      
+    "required": ["name", "address", "creation_date"],
+  }
+}
+
+```
+##### Exemple
+
+```json
+"brewery": {
+  "name" : "brasserie 1",
+  "address":"adr 1",
+  "creation_date":1990
+}
+```
+
 
 ## Comentaire sur une bière
+
+Pour eviter une trop grande surcharge lors de l'importation d'une bière nous avons desidé que les commentaire soit dans une colection propre.
+
+```json
+{
+    "comment":{
+        "type":"objet",
+        "patternProperties":{
+            "[0-9A-z]{28}":{
+                "properties":{
+                    "idUser" : { "type":"string", "pattern" : "[0-9A-z]{28}" },
+                    "idbeer":{ "type":"string", "pattern" : "[0-9A-z]{28}" },
+                    "message":{"type":"string"}
+                }
+            }
+        },
+        "required": ["idUser","idBeer","message"],
+    }
+}
+
+```
+
+##### Exemple 
+
+```json
+{
+  "comment":{
+    "idMessage":{
+      "idUser":"user1",
+      "idbeer":"beer1",
+      "message":"TODO"
+    }
+  }
+}
+```
