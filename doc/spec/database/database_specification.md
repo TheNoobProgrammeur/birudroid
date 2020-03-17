@@ -106,7 +106,7 @@ Dans un premier temps les commentaires seront présent sans possibilité de rép
           "type": "object",
           "properties":{
             "name": { "type" : "string" },
-            "type": { "type" : "string" },
+            "typeBeer": { "type" : "string" },
             "description": { "type" : "string" },
             "degree": {
               "type": "number",
@@ -194,3 +194,16 @@ Dans un premier temps les commentaires seront présent sans possibilité de rép
   }
 }
 ```
+
+### colection anexe :
+
+Pour amelioré la cohérance des données et leur filtrage nous avons sortie certain parametre de la colection biére pour crée des colection propre.
+
+* Type de bière
+* Marque de bière
+* Braserie de la bière
+
+
+
+
+## Comentaire sur une bière
