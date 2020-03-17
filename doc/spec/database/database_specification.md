@@ -5,7 +5,9 @@
 La base de donnée aura pour but de sauvegarder les données suivantes :
 * Les utilisateurs
 * Les bières
+* Les commentaires
 * Les marques de bière
+* Les types de bière
 
 Pour ce projet nous avons choisi d'utiliser Firebase.  
 Nous utiliserons le service d'authentification intégré à Firebase.  
