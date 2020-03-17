@@ -195,11 +195,15 @@ Pour éviter une trop grande surcharge lors de l'importation d'une bière nous a
                   },
                   "message":{
                     "type":"string"
-                  }
+                  },
+                  "creationDate": { 
+                    "type" : "string",
+                    "format": "date-time" 
+                },
               }
           }
       },
-      "required": ["idUser","idBeer","message"],
+      "required": ["idUser","idBeer","message","creationDate"],
   }
 }
 
@@ -209,11 +213,12 @@ Pour éviter une trop grande surcharge lors de l'importation d'une bière nous a
 
 ```json
 {
-  "comments":{
-    "cid1":{
-      "idUser":"uid1",
-      "idBeer":"bid1",
-      "message":"TODO"
+  "comment":{
+    "idMessage":{
+      "idUser":"user1",
+      "idBeer":"beer1",
+      "message":"TODO",
+      "creationDate":"11-08-2020"
     }
   }
 }
