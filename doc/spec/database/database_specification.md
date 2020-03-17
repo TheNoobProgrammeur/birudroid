@@ -29,7 +29,7 @@ _Dans les exemples qui suivront :_
 Chaque utilisateur authentifié a uuid unique généré par Firebase, il est retourné dans le résultat de chaque méthode d'authentification.
 La collection `Users` permet de stocker ses informations tel que son nom d'utilisateur, son mail et ses bières favorites.
 
-### Schéma de la collection **User**
+### Schéma de la collection **Users**
 
 ```json
 {
@@ -43,7 +43,7 @@ La collection `Users` permet de stocker ses informations tel que son nom d'utili
           "properties":{
             "username": { "type" : "string" },
             "email": { "type" : "string" },
-            "favorite_beer": {
+            "favoriteBeer": {
               "type": "array",
               "items":{
                 "type": "string",
@@ -68,7 +68,7 @@ La collection `Users` permet de stocker ses informations tel que son nom d'utili
     "uid1":{
       "username": "toto", 
       "email": "toto@toto.gouv", 
-      "favorite_beer": [
+      "favoriteBeer": [
           "bid1",
           "bid7"
       ]
@@ -106,7 +106,10 @@ Dans un premier temps les commentaires seront présent sans possibilité de rép
           "type": "object",
           "properties":{
             "name": { "type" : "string" },
-            "typeBeer": { "type" : "string" , "pattern" : "[0-9A-z]{28}"},
+            "typeBeerId": { 
+              "type" : "string" ,
+              "pattern" : "[0-9A-z]{28}"
+            },
             "description": { "type" : "string" },
             "degree": {
               "type": "number",
@@ -117,12 +120,25 @@ Dans un premier temps les commentaires seront présent sans possibilité de rép
               "minimum": 0,
               "maximum": 5
             },
-            "nb_vote":{
+            "nbVote":{
               "type" : "integer",
               "minimum" : 0
             },
-            "brand": { "type":"string", "pattern" : "[0-9A-z]{28}" },
-            "brewery": { "type":"string", "pattern" : "[0-9A-z]{28}" },
+            "brandId": { 
+              "type":"string",
+              "pattern" : "[0-9A-z]{28}" 
+            },
+            "brewery:":{
+              "type" : "object",
+              "properties": {
+                "name": { "type" : "string" },
+                "address": { "type" : "string" },
+                "creationDate": { 
+                    "type" : "string",
+                    "format": "date-time" 
+                },
+              } 
+            }
           },
           "additionalProperties": false
         }
@@ -144,23 +160,73 @@ Dans un premier temps les commentaires seront présent sans possibilité de rép
       "description": "TODO",
       "degree": 8,
       "average": 2.5,
-      "brand": "brandID",
-      "brewery": "brewaryID"
+      "nbVote": 5,
+      "brandId": "brandID",
+      "breweryId": "brewaryID"
     },
     "bid2": {}
   }
 }
 ```
 
-### colection anexe ℹ️ :
+## Commentaires sur une bière
 
-Pour amelioré la cohérance des données et leur filtrage nous avons sortie certain parametre de la colection biére pour crée des colection propre.
+Pour éviter une trop grande surcharge lors de l'importation d'une bière nous avons desidé que les commentaires seront dans une collection propre.
+
+### Schéma de la collection **Comments**
+
+```json
+{
+  "comments":{
+      "type":"objet",
+      "patternProperties":{
+          "[0-9A-z]{28}":{
+              "properties":{
+                  "idUser" :{ 
+                    "type":"string",
+                    "pattern" : "[0-9A-z]{28}" 
+                  },
+                  "idBeer":{
+                    "type":"string",
+                    "pattern" : "[0-9A-z]{28}" 
+                  },
+                  "message":{
+                    "type":"string"
+                  }
+              }
+          }
+      },
+      "required": ["idUser","idBeer","message"],
+  }
+}
+
+```
+
+### Exemple 
+
+```json
+{
+  "comment":{
+    "idMessage":{
+      "idUser":"user1",
+      "idBeer":"beer1",
+      "message":"TODO"
+    }
+  }
+}
+```
+
+## Collections annexe ℹ️ :
+
+Pour améliorer la cohérence des données et leur filtrage nous avons sorti certain parametre de la collection biére pour créer des collections propres.
 
 * Type de bière
 * Marque de bière
 * Braserie de la bière
 
-#### Type de bière :
+## Type de bière :
+
+### Schéma de la collection **TypeBeer**
 
 ```json
 {
@@ -177,7 +243,7 @@ Pour amelioré la cohérance des données et leur filtrage nous avons sortie cer
     }
 }
 ```
-##### Exemple :
+### Exemple :
 
 ```json
 
@@ -192,7 +258,9 @@ Pour amelioré la cohérance des données et leur filtrage nous avons sortie cer
 
 ```
 
-#### Marque de la bière
+## Marque de la bière
+
+### Schéma de la collection **Brand**
 
 ```json
 {
@@ -211,7 +279,7 @@ Pour amelioré la cohérance des données et leur filtrage nous avons sortie cer
 }
 ```
 
-##### Exemple :
+### Exemple :
 
 ```json
 {
@@ -223,76 +291,4 @@ Pour amelioré la cohérance des données et leur filtrage nous avons sortie cer
     }
 }
 
-```
-
-#### Braserie de la bière 
-
-```json
-{
-  "brewery": {
-    "type" : "object",
-    "patternProperties":{
-        "[0-9A-z]{28}":{
-            "properties": {
-              "name": { "type" : "string" },
-              "address": { "type" : "string" },
-              "creation_date": { 
-                  "type" : "string",
-                  "format": "date-time" 
-              }, 
-            }
-        }
-    },
-      
-    "required": ["name", "address", "creation_date"],
-  }
-}
-
-```
-##### Exemple
-
-```json
-"brewery": {
-  "name" : "brasserie 1",
-  "address":"adr 1",
-  "creation_date":1990
-}
-```
-
-
-## Comentaire sur une bière
-
-Pour eviter une trop grande surcharge lors de l'importation d'une bière nous avons desidé que les commentaire soit dans une colection propre.
-
-```json
-{
-    "comment":{
-        "type":"objet",
-        "patternProperties":{
-            "[0-9A-z]{28}":{
-                "properties":{
-                    "idUser" : { "type":"string", "pattern" : "[0-9A-z]{28}" },
-                    "idbeer":{ "type":"string", "pattern" : "[0-9A-z]{28}" },
-                    "message":{"type":"string"}
-                }
-            }
-        },
-        "required": ["idUser","idBeer","message"],
-    }
-}
-
-```
-
-##### Exemple 
-
-```json
-{
-  "comment":{
-    "idMessage":{
-      "idUser":"user1",
-      "idbeer":"beer1",
-      "message":"TODO"
-    }
-  }
-}
 ```
