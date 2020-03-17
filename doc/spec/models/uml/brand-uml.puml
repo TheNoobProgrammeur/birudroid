@@ -1,0 +1,6 @@
+@startuml Class Brand
+class Brand {
+    - name String
+    - description String
+}
+@enduml

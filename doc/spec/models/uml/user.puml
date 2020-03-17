@@ -1,0 +1,8 @@
+@startuml Class User
+class User {
+    - id String
+    - name String
+    - mail String
+    - beerList MutableList<Beer>
+}
+@enduml
