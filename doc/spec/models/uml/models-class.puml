@@ -49,13 +49,13 @@ class User {
     + addMarkToBeer(String beerId)
 }
 
-BeerDetail <|-- Beer
+BeerDetail --|> Beer
 
-Brewery --* "0:n" BeerDetail
-Comment --* "0:n" BeerDetail
-User "0:n" o-- BeerDetail
+Brewery *-- "0:n" BeerDetail
+Comment *-- "0:n" BeerDetail
+User "0:n" --o BeerDetail
 
-TypeBeer --o "1:1" Beer
-Brand --o "0:1" Beer
+TypeBeer o-- "1:1" Beer
+Brand o-- "0:1" Beer
 
 @enduml
