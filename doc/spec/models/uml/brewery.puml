@@ -1,0 +1,7 @@
+@startuml Class Brewery
+class Brewery {
+    - name String
+    - adress String
+    - creationDate DateTime
+}
+@enduml

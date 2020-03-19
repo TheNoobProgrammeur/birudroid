@@ -1,0 +1,10 @@
+@startuml Class Beer
+class Beer{
+    - id String
+    - name String
+    - degree Float
+    - brandId Brand
+    - typeBeerId TypeBeer
+    - average Float
+}
+@enduml
