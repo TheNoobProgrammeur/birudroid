@@ -2,13 +2,9 @@
 class Beer{
     - id String
     - name String
-    - description String
     - degree Float
     - brandId Brand
     - typeBeerId TypeBeer
-    - brewery Brewery
     - average Float
-    - nbVote Int
-    - comments MutableList<Comment>
 }
 @enduml

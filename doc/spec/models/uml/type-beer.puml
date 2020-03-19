@@ -1,6 +1,3 @@
 @startuml Class TypeBeer
-class TypeBeer {
-    - id String
-    - name String
-}
+enum TypeBeer
 @enduml

@@ -1,0 +1,9 @@
+@startuml
+class BeerDetail{
+    - description String
+    - brewery Brewery
+    - nbVote Int
+    - comments MutableList<Comment>
+    + changeAverage(Float newNote)
+}
+@enduml

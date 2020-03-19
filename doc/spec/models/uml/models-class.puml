@@ -1,14 +1,8 @@
 @startuml Schema Objet
 
 class BeerDetail{
-    - id String
-    - name String
     - description String
-    - degree Float
-    - brandId Brand
-    - typeBeerId TypeBeer
     - brewery Brewery
-    - average Float
     - nbVote Int
     - comments MutableList<Comment>
     + changeAverage(Float newNote)
@@ -24,10 +18,7 @@ class Beer{
 }
 
 
-class TypeBeer{
-    - id String
-    - name String
-}
+enum TypeBeer
 
 class Brand {
     - id String
@@ -60,8 +51,6 @@ class User {
 
 BeerDetail <|-- Beer
 
-TypeBeer --o "1:1" BeerDetail
-Brand --o "0:1" BeerDetail
 Brewery --* "0:n" BeerDetail
 Comment --* "0:n" BeerDetail
 User "0:n" o-- BeerDetail

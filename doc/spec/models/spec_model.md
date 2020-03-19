@@ -57,9 +57,7 @@ Il existe deux classes bière, la première qui contient les informations essent
 
 ### Type de bière
 
-un type bière est défini par:
-* un id
-* un nom
+Type bière est un enum(ex:Blonde,Brune,Ambrée)
 
 **Uml :**
 
