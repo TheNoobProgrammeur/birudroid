@@ -106,10 +106,7 @@ Dans un premier temps les commentaires seront présent sans possibilité de rép
         "type": "object",
         "properties":{
           "name": { "type" : "string" },
-          "typeBeerId": { 
-            "type" : "string" ,
-            "pattern" : "[0-9A-z]{28}"
-          },
+          "typeBeer": { "type" : "string" },
           "description": { "type" : "string" },
           "degree": {
             "type": "number",
@@ -220,44 +217,6 @@ Pour éviter une trop grande surcharge lors de l'importation d'une bière nous a
       "message":"TODO",
       "creationDate":"11-08-2020"
     }
-  }
-}
-```
-
-## Collections annexe ℹ️ :
-
-Pour améliorer la cohérence des données et leur filtrage nous avons sorti certain parametre de la collection biére pour créer des collections propres.
-
-* Type de bière
-* Marque de bière
-
-## Type de bière :
-
-### Schéma de la collection **TypeBeer**
-
-```json
-{
-  "typeBeer":{
-    "type":"object",
-    "patternProperties":{
-        "[0-9A-z]{28}":{
-            "properties":{
-                "name":{"type":"string"}
-            },
-            "required":["name"]
-        }
-    }
-  }
-}
-```
-### Exemple :
-
-```json
-{
-  "typeBeer":{
-      "tid1":{
-          "name":"Blonde"
-      }
   }
 }
 ```
