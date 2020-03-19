@@ -19,7 +19,7 @@ bin/
 gen/
 out/
 release/
-
+.idea/
 # Gradle files
 .gradle/
 build/
