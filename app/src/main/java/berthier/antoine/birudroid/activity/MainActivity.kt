@@ -1,7 +1,8 @@
-package berthier.antoine.birudroid
+package berthier.antoine.birudroid.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import berthier.antoine.birudroid.R
 
 class MainActivity : AppCompatActivity() {
 
