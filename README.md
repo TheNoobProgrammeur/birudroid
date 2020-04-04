@@ -9,4 +9,4 @@ Auteurs :
 
 ## But du projet :
 
-crée une application de notation de biére
+créer une application de notation de biére
