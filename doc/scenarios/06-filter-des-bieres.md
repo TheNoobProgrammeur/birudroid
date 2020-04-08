@@ -22,9 +22,9 @@ L'application affiche les bières correspondant aux filtres appliqués
 7. L'API envoie une liste de bières à l'application
 8. L'application affiche les bières retournées par l'API
 
-## Filtre :
+## Filtres :
 
 - nom
 - type
-- brasserie
+- marque
 - degrès 

@@ -13,21 +13,32 @@ Connexion d'un utilisateur
 
 1. L'utilisateur lance l'application
 2. L'utilisateur arrive sur l'écran de connexion
-3. L'utilisateur rentre ses informations de connexion
-4. L'utilisateur appuie sur le bouton "Connexion"
-5. L'application envoie les elements à l'API
-6. L'API verifie les informations de connexion
-    * SUCCESS : les informations de connexion sont bonnes -> l'API renvoie un succés -> message de succés -> **étape 7**
-    * ERROR : les informations de connexion sont mauvaises -> l'API renvoie une erreur -> message d'erreur -> **étape 2**
-7. L'API envoie un token de conection à l'application 
-8. L'application affiche la page principale
+3. L'utilisateur à le choix entre se connecter avec son compte Google ou avec une adresse mail
+    * Avec Google:
+        1. L'utilisateur clique sur "connexion avec Google"
+        2. Firebase verifie les informations de connexion:
+            * SUCCESS: message succès inscription -> **étape 4**
+            * ERROR: message d'erreur inscription -> **étape 2**
+    * Avec adresse mail: 
+        1. L'utilisateur clique sur "connexion avec une adresse mail"
+        2. L'utilisateur renseigne son adresse mail
+        3. Deux cas de figure:
+            - L'adresse mail est utilisé:
+                1. L'utilisateur renseigne un mot de passe
+                2. L'utilisateur clique sur "Connection":
+                    * SUCCESS: message succès connexion -> **étape 4**
+                    * ERROR: message d'erreur connexion -> **étape 2**
+            - L'addresse mail n'est pas reconnu: 
+                1. L'utilisateur renseigne un nom d'utilisateur
+                2. L'utilisateur renseigne un mot de passe
+                3. L'utilisateur clique sur "Connection":
+                    * SUCCESS: message succès inscription -> **étape 4**
+                    * ERROR: message d'erreur inscription -> **étape 2**
+4. L'application affiche la page principale
 
-### Cause :
-L'application a un token
+### Déroulement alternatif :
+L'application a déjà un utilisateur de connecté
 
 1. L'utilisateur lance l'application
-2. L'application trouve un token
-3. L'application envoie le token à l'API
-4. L'API verifie la validité du token
-    * SUCCESS: **étape 8**
-    * ERROR: **étape 2**
+2. L'application trouve un utilisateur en mémoire
+3. L'application affiche la page principale
