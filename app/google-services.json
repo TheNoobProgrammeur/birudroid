@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "10880219289",
+    "firebase_url": "https://birudroid-139c9.firebaseio.com",
+    "project_id": "birudroid-139c9",
+    "storage_bucket": "birudroid-139c9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10880219289:android:e993ac7054fa1ddc1b6008",
+        "android_client_info": {
+          "package_name": "berthier.antoine.birudroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10880219289-548a28ejri1b3ekdj0ftdq2a85uo0p23.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "berthier.antoine.birudroid",
+            "certificate_hash": "a68fb049840101d9e475e3354a608a008e07bcbb"
+          }
+        },
+        {
+          "client_id": "10880219289-k6vdr90t0vj7nknb4011t7rbm24v85tq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUGAsAkrGvdwUzfogD9BSVzJEjM8OsS5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10880219289-k6vdr90t0vj7nknb4011t7rbm24v85tq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
