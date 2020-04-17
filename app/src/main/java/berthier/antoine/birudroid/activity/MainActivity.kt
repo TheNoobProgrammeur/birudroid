@@ -9,9 +9,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import berthier.antoine.birudroid.R
 import berthier.antoine.birudroid.util.FirebaseUtil
-import com.google.android.material.badge.BadgeDrawable
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
