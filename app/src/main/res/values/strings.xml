@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Birudroid</string>
     <string name="connexion">Connexion</string>
+    <string name="annuler">Annuler</string>
+    <string name="accept_deco">Se deconnecter</string>
     <string name="deconnexion">Deconnexion</string>
+    <string name="deconnexion_message">Voulez vous vous déconnecter ?</string>
     <string name="favoris">Favoris</string>
     <string name="ajouter">Ajouter</string>
     <string name="rechercher">Rechercher</string>

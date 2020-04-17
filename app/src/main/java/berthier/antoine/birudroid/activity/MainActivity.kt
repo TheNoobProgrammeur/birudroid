@@ -9,6 +9,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import berthier.antoine.birudroid.R
 import berthier.antoine.birudroid.util.FirebaseUtil
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -44,10 +45,22 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this, LoginActivity::class.java).addFlags(FLAG_ACTIVITY_NO_HISTORY))
     }
 
+    private fun logout(){
+        MaterialAlertDialogBuilder(this)
+            .setTitle(resources.getString(R.string.deconnexion))
+            .setMessage(resources.getString(R.string.deconnexion_message))
+            .setNegativeButton(resources.getString(R.string.annuler)) { dialog, which ->
+            }
+            .setPositiveButton(resources.getString(R.string.accept_deco)) { dialog, which ->
+                FirebaseUtil.logout()
+                invalidateOptionsMenu()
+            }
+            .show()
+    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.btn_login -> goToLogin()
-            R.id.btn_logout -> {FirebaseUtil.logout(); invalidateOptionsMenu()}
+            R.id.btn_logout -> logout()
         }
         return super.onOptionsItemSelected(item)
     }
