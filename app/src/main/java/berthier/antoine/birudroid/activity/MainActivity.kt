@@ -9,7 +9,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import berthier.antoine.birudroid.R
 import berthier.antoine.birudroid.util.FirebaseUtil
-import com.google.firebase.auth.FirebaseAuths
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
