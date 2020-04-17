@@ -4,15 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import berthier.antoine.birudroid.R
-import berthier.antoine.birudroid.model.User
-import berthier.antoine.birudroid.model.UserManager
 import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.IdpResponse
-import com.firebase.ui.auth.data.model.UserCancellationException
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -20,7 +15,6 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("start: ", "ping !! ");
     }
 
     override fun onResume() {
@@ -47,21 +41,15 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.d("result", "$requestCode;$resultCode");
         if (requestCode == 1) {
             val user = FirebaseAuth.getInstance().currentUser
             if (user != null) {
-                val userToken = user.getIdToken(true).result
-                if(user.displayName!=null && user.email!=null){
-                    UserManager.getInstance(this).create(user.displayName!!, user.email!!, userToken.toString())
+                if (resultCode == Activity.RESULT_OK) {
+                    val goHome = Intent(this, MainActivity::class.java)
+                    startActivity(goHome);
+                } else {
+                    Toast.makeText(this, "error in authent", Toast.LENGTH_LONG).show()
                 }
-            };
-            if (resultCode == Activity.RESULT_OK) {
-                val goHome = Intent(this, MainActivity::class.java)
-                //User.Instance.createUser(user.)
-                startActivity(goHome);
-            } else {
-                Toast.makeText(this, "error in authent", Toast.LENGTH_LONG).show()
             }
         }
     }

@@ -8,8 +8,13 @@ import com.google.firebase.auth.FirebaseAuth
 class FirebaseUtil {
     companion object Instance{
         lateinit var mCallerActivity: Activity
+        lateinit var authStateListener: FirebaseAuth.AuthStateListener
+
         fun openFbreference(callerActivity: Activity){
             mCallerActivity = callerActivity
+            authStateListener = FirebaseAuth.AuthStateListener {
+                callerActivity.invalidateOptionsMenu()
+            }
         }
         fun logout(){
             // We could create a confirmation popup
