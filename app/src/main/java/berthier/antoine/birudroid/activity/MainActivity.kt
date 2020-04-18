@@ -1,32 +1,36 @@
 package berthier.antoine.birudroid.activity
 
-import android.app.Activity
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NO_HISTORY
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
-import android.widget.Toast
 import berthier.antoine.birudroid.R
-import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.IdpResponse
+import berthier.antoine.birudroid.util.FirebaseUtil
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        FirebaseUtil.openFbreference(this)
+        firebaseAuth = FirebaseAuth.getInstance()
+        firebaseAuth.addAuthStateListener(FirebaseUtil.authStateListener)
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.main_menu, menu)
-        val user = FirebaseAuth.getInstance().currentUser
+        val inflaterLogin: MenuInflater = menuInflater
+        inflaterLogin.inflate(R.menu.login_menu, menu)
+        val user = firebaseAuth.currentUser
         if(user != null){
             menu.findItem(R.id.btn_login)?.isVisible = false
             menu.findItem(R.id.btn_logout)?.isVisible = true
@@ -37,29 +41,13 @@ class MainActivity : AppCompatActivity() {
         return true;
     }
     private fun goToLogin(){
-        startActivity(Intent(this, LoginActivity::class.java))
-    }
-
-
-    // Convert in static method in FirebaseUtil File
-    private fun logout(){
-        // We could create a confirmation popup
-        AuthUI.getInstance()
-            .signOut(this)
-            .addOnCompleteListener {
-                invalidateOptionsMenu()
-                // Créer des alerts plutôt que des Toasts
-                Toast.makeText(this, "You have been disconnected", Toast.LENGTH_LONG).show()
-            }.addOnCanceledListener {
-                Toast.makeText(this, "Impossible to disconnect", Toast.LENGTH_LONG).show()
-            }
-        val user = FirebaseAuth.getInstance().currentUser
+        startActivity(Intent(this, LoginActivity::class.java).addFlags(FLAG_ACTIVITY_NO_HISTORY))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.btn_login -> goToLogin()
-            R.id.btn_logout -> logout()
+            R.id.btn_logout -> {FirebaseUtil.logout(); invalidateOptionsMenu()}
         }
         return super.onOptionsItemSelected(item)
     }
