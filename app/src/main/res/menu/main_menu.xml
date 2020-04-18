@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/btn_login"
-        android:title="@string/connexion"
-        app:showAsAction="ifRoom"
-        android:visible="true"/>
 
-    <item android:id="@+id/btn_logout"
-        android:title="@string/deconnexion"
-        app:showAsAction="ifRoom"
-        android:visible="false"/>
+    <item android:id="@+id/btn_fav"
+    android:enabled="true"
+    android:title="@string/favoris"
+    android:icon="@drawable/ic_fav"
+    android:visible="true"
+    app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/btn_add_beer"
+        android:enabled="true"
+        android:title="@string/ajouter"
+        android:icon="@drawable/ic_add"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/btn_search"
+        android:enabled="true"
+        android:title="@string/rechercher"
+        android:icon="@drawable/ic_search"
+        android:visible="true"
+        app:showAsAction="ifRoom" />
 
 </menu>
