@@ -3,5 +3,4 @@
         <item name="android:windowBackground">@color/colorBackground</item>
         <item name="windowNoTitle">true</item>
     </style>
-
 </resources>
