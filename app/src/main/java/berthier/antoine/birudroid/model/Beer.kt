@@ -10,7 +10,8 @@ open class Beer(
         var brand: Brand = Brand("ID_NOT_DEF","NAME_NOT_DEF","DESCRIPTION_NOT_DEF"),
         var typeBeer: TypeBeer=TypeBeer.NOT_DEF,
         var nbVotent: Int = 0,
-        var averger: Double = 0.00
+        var averger: Double = 0.00,
+        var idImageBeer: String =  "null"
 ){
-    constructor(beer: Beer) : this(beer.id, beer.name, beer.degree, beer.brand, beer.typeBeer, beer.nbVotent, beer.averger)
+    constructor(beer: Beer) : this(beer.id, beer.name, beer.degree, beer.brand, beer.typeBeer, beer.nbVotent, beer.averger,beer.idImageBeer)
 }
