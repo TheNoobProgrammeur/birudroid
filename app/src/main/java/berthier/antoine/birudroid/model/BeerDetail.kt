@@ -11,8 +11,8 @@ class BeerDetail : Beer {
         this.listeCommentaire = listeCommentaire
     }
 
-    constructor(id:String, name:String, degree:Double, brand: Brand, typeBeer: TypeBeer, description : String, brewery: Brewery, nbVotent: Int = 0, averger: Double =0.00, listeCommentaire:ArrayList<Comment> = ArrayList<Comment>())
-            : super(id, name, degree, brand, typeBeer,nbVotent,averger ) {
+    constructor(id:String, name:String, degree:Double, brand: Brand, typeBeer: TypeBeer, description : String, brewery: Brewery, idImageBeer: String = "Null", nbVotent: Int = 0, averger: Double =0.00, listeCommentaire:ArrayList<Comment> = ArrayList<Comment>())
+            : super(id, name, degree, brand, typeBeer,nbVotent,averger,idImageBeer ) {
         this.description = description
         this.brewery = brewery
         this.listeCommentaire = listeCommentaire
