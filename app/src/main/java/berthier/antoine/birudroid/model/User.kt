@@ -5,7 +5,8 @@ class User(
     var mail: String,
     var id: String,
     var beerFavorite: ArrayList<Beer> = ArrayList<Beer>(),
-    var beerNote: ArrayList<Note> = ArrayList<Note>()
+    var beerNote: ArrayList<Note> = ArrayList<Note>(),
+    var idUserImage: String = "Null"
 ) {
     companion object Instance{
         lateinit var mName: String
@@ -13,6 +14,7 @@ class User(
         lateinit var mId: String
         var mBeerFavorite: ArrayList<Beer> = ArrayList<Beer>()
         var mBeerNote: ArrayList<Note> = ArrayList<Note>()
+        var idUserImage: String = "Null"
 
         fun createUser(
             name: String,
