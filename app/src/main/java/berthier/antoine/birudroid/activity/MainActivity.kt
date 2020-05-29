@@ -9,8 +9,11 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import berthier.antoine.birudroid.R
 import berthier.antoine.birudroid.util.FirebaseUtil
+import com.google.android.material.bottomnavigation.BottomNavigationMenu
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +25,22 @@ class MainActivity : AppCompatActivity() {
         FirebaseUtil.openFbreference(this)
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseAuth.addAuthStateListener(FirebaseUtil.authStateListener)
+        val navBar: BottomNavigationView = findViewById(R.id.bottom_navigation)
+
+        /*
+        * Warning  : there are a setOnNavigationItemSelectedListener
+        *                  and a setOnNavigationItemRESelectedListener
+        */
+        navBar.setOnNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.btn_add_beer -> {
+                    goToNewBeer()
+                    true
+                }
+                else -> false
+            }
+        }
+
     }
 
     override fun onResume() {
@@ -45,6 +64,11 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this, LoginActivity::class.java).addFlags(FLAG_ACTIVITY_NO_HISTORY))
     }
 
+    private fun goToNewBeer() {
+        val newBeerActivity = Intent(this, BeerCreation::class.java)
+        startActivity(newBeerActivity)
+    }
+
     private fun logout(){
         MaterialAlertDialogBuilder(this)
             .setTitle(resources.getString(R.string.deconnexion))
@@ -64,4 +88,5 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 }

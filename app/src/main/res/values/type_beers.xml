@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="type_of_beer">
+        <item>Belges</item>
+        <item>Belges Fort</item>
+        <item>Acidulees</item>
+        <item>Bock</item>
+        <item>Hybrides Ambres</item>
+        <item>Hybrides Blonde</item>
+        <item>IPA</item>
+        <item>Ambree</item>
+        <item>Blonde</item>
+        <item>Foncee</item>
+    </string-array>
+</resources>

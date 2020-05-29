@@ -12,4 +12,12 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="beer_description">Beer Description</string>
+    <string name="beer_degree">Degree</string>
+    <string name="beer_name">Beer Name</string>
+    <string name="beer_type">Beer Type</string>
+    <string name="beer_brand">Beer Brand</string>
+    <string name="missing_data">some date are missing</string>
+    <string name="beer_added">successfully sent</string>
+    <string name="no_pict">no picture taken</string>
 </resources>
