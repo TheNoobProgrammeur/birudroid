@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#ECC600</color>
+    <color name="colorPrimaryDark">#74572B</color>
     <color name="colorBackground">#FADA89</color>
+    <color name="colorBackgroundDark">#473420</color>
     <color name="colorAccent">#D81B60</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <!-- This color under this comment are for the background on beer creation -->
+    <color name="colorBackgroundActivityDay">#FFFFFF</color>
+    <color name="colorBackgroundActivityNight">#372716</color>
+
 </resources>

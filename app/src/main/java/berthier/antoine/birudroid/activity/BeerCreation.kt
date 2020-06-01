@@ -47,6 +47,8 @@ class BeerCreation : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_beer_creation)
+        setTheme(R.style.AppThemeActivityAlone)
+
         //var listTypeOfBeer: ArrayList<String> = createArrayListBeer()
         alertDialogBuilder = AlertDialog.Builder(this)
 
