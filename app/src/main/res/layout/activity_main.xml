@@ -9,8 +9,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvBeers"
-        android:layout_width="359dp"
-        android:layout_height="688dp"
+        android:layout_width="match_parent"
+        android:layout_height="674dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp" />
@@ -20,7 +20,7 @@
         android:id="@+id/bottom_navigation"
         style="@style/Widget.Design.BottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:theme="@style/ThemeBottomNavigationBAr"
         app:itemIconTint="@color/black"
