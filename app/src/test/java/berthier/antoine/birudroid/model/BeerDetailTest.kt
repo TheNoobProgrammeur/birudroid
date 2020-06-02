@@ -12,7 +12,8 @@ class Beer_Detail_Test{
         var brand = Brand("idTes","testName","TesDescription")
         var beer = Beer("test","test",1.89, brand,TypeBeer.BELGES)
         var brewery = Brewery("breweryIdTes","breewerAdressTes", Date(),"description")
-        var beerDetail = BeerDetail(beer,"description",brewery)
+        var beerDetail = BeerDetail(beer,brewery)
+        beerDetail.description = "description"
         Assert.assertEquals("test",beerDetail.id)
         Assert.assertEquals("test",beerDetail.name)
         Assert.assertEquals(1.89,beerDetail.degree, 0.00)
@@ -32,7 +33,8 @@ class Beer_Detail_Test{
         var brewery = Brewery("breweryIdTes","breewerAdressTes", Date(),"description")
         var comments = ArrayList<Comment>()
         comments.add(Comment("1","userID",beer.id, Date(), "TODO"))
-        var beerDetail = BeerDetail(beer,"description",brewery, comments)
+        var beerDetail = BeerDetail(beer,brewery,listeCommentaire=comments)
+        beerDetail.description = "description"
         Assert.assertEquals("test",beerDetail.id)
         Assert.assertEquals("test",beerDetail.name)
         Assert.assertEquals(1.89,beerDetail.degree, 0.00)

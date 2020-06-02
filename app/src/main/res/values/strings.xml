@@ -12,12 +12,33 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="beer_description">Beer Description</string>
-    <string name="beer_degree">Degree</string>
-    <string name="beer_name">Beer Name</string>
-    <string name="beer_type">Beer Type</string>
-    <string name="beer_brand">Beer Brand</string>
+    <string name="beer_description">Description</string>
+    <string name="beer_degree">Degrée</string>
+    <string name="beer_name">Nom de la bière</string>
+    <string name="beer_type">Type de bière</string>
+    <string name="beer_type_label">Type de bière:</string>
+    <string name="beer_brand">Marque de la bière</string>
     <string name="missing_data">some date are missing</string>
-    <string name="beer_added">successfully sent</string>
+    <string name="beer_added">Bière enregistrée</string>
+    <string name="creation_progress">Enregistrement en cours</string>
+    <string name="creation_failed">Erreur lors de la création</string>
     <string name="no_pict">no picture taken</string>
+    <string name="deg_alc">°C</string>
+    <string name="title_activity_detail_beer">DetailBeer</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="name_beer">Name Beer</string>
+    <string name="brand">Marque: </string>
+    <string name="type">Type: </string>
+    <string name="degree">Degrée: </string>
+    <string name="description">Description: </string>
+    <string name="adding_beer">add_beer_img</string>
+    <string name="add_beer_title">Ajout d\'une bière</string>
+    <string name="alt_beer_img">Image de la bière</string>
 </resources>

@@ -5,6 +5,7 @@
     <color name="colorBackground">#FADA89</color>
     <color name="colorBackgroundDark">#473420</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorCard">#FFECBC</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <!-- This color under this comment are for the background on beer creation -->

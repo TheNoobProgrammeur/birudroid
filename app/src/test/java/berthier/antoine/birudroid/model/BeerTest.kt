@@ -8,7 +8,7 @@ class BeerTest {
     @Test
     fun creation_beer(){
         var brand = Brand("idTes","testName","TesDescription")
-        var beer = Beer("test","test",1.89, brand,TypeBeer.BELGES,1,1.00)
+        var beer = Beer("test","test",1.89, brand,TypeBeer.BELGES,nbVotent=1,averger=1.00)
         Assert.assertEquals("test",beer.id)
         Assert.assertEquals("test",beer.name)
         Assert.assertEquals(1.89,beer.degree, 0.00)
@@ -34,7 +34,7 @@ class BeerTest {
     @Test
     fun creation_beer_by_beer(){
         var brand = Brand("idTes","testName","TesDescription")
-        var beer = Beer("test","test",1.89, brand,TypeBeer.BELGES,0,0.00)
+        var beer = Beer("test","test",1.89, brand,TypeBeer.BELGES,nbVotent=0,averger=0.00)
         var newBeer = Beer(beer)
         Assert.assertEquals("test",newBeer.id)
         Assert.assertEquals("test",newBeer.name)

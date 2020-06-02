@@ -62,7 +62,7 @@ class BeerCreation : AppCompatActivity() {
         //la c'est la reference de la bdd
         _databaseReference = FirebaseUtil.databaseReference;
         //la celle de la bdd pour les images
-        _storage = FirebaseStorage.getInstance("gs://birudroid-139c9.appspot.com")
+        _storage = FirebaseStorage.getInstance("gs://first-firebase-8ddd8.appspot.com")
 
         val spinner: Spinner = findViewById(R.id.beerType)
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -92,7 +92,6 @@ class BeerCreation : AppCompatActivity() {
                 alertDialogBuilder.setNeutralButton("ok") {dialog: DialogInterface, which: Int-> Toast.makeText(applicationContext, "ok", Toast.LENGTH_SHORT)}
                 alertDialogBuilder.show()
             }
-            Log.d("INFO","BUTON IS ACTIVATE")
             CropImage.activity(null)
                 .setGuidelines(CropImageView.Guidelines.ON)
                 .setCropShape( CropImageView.CropShape.OVAL)
@@ -109,7 +108,6 @@ class BeerCreation : AppCompatActivity() {
     fun sendNewBeer()
     {
         val netralButton = {dialog: DialogInterface, which: Int-> Toast.makeText(applicationContext, "Maybe", Toast.LENGTH_SHORT)}
-        println("le text ")
         val message :String = getString(R.string.missing_data)
         if (!checkData()) {
             alertDialogBuilder.setMessage(message)
@@ -123,6 +121,7 @@ class BeerCreation : AppCompatActivity() {
             val degree: String = beerDegree.text.toString()
             val spinner: Spinner = findViewById(R.id.beerType);
             val typeBeer: String = spinner.getSelectedItem().toString();
+            val description: String = beerDescription.text.toString();
             val idImd: String = initBeerImageData()
             /* we dont check if there is a picture, to have one is not mandatory */
             var newBeer: Beer =
@@ -132,13 +131,21 @@ class BeerCreation : AppCompatActivity() {
                     degree.toDouble(),
                     Brand("0", brand, ""),
                     TypeBeer.valueOf(typeBeer.replace(" ", "_").toUpperCase()),
+                    description,
                     0,
                     0.0,
                     idImd
                 );
-            _databaseReference.push().setValue(newBeer);
-            Toast.makeText(this, getString(R.string.beer_added), Toast.LENGTH_LONG).show();
-            this.finish()
+            Toast.makeText(this, getString(R.string.creation_progress), Toast.LENGTH_LONG).show();
+            _databaseReference.push().setValue(newBeer).addOnCompleteListener {  task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, getString(R.string.beer_added), Toast.LENGTH_LONG).show();
+                    Thread.sleep(1_000);
+                    this.finish()
+                } else {
+                    Toast.makeText(this, getString(R.string.creation_failed), Toast.LENGTH_LONG).show();
+                }
+            }
         }
 
     }
@@ -146,13 +153,9 @@ class BeerCreation : AppCompatActivity() {
 
     fun checkData(): Boolean {
         val nameBeer :String = beerNameInput.text.toString()
-        val brand :String = beerBrand.text.toString()
         val degree :String = beerDegree.text.toString()
 
         if (nameBeer.length <= 0){
-            return false
-        }
-        if (brand.length <= 0){
             return false
         }
         if (degree.length <= 0){

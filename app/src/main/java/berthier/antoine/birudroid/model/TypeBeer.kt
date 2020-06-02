@@ -1,6 +1,8 @@
 package berthier.antoine.birudroid.model
 
-enum class TypeBeer(s: String) {
+import java.io.Serializable
+
+enum class TypeBeer(s: String) : Serializable  {
     BELGES("Belges"),
     BELGES_FORT("Belges Fort"),
     ACIDULEES("Acidulees"),

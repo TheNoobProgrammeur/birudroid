@@ -9,10 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.BeerCreation"></activity>
+        <activity android:name=".activity.DetailBeer" />
+        <activity android:name=".activity.BeerCreation" />
         <activity android:name=".activity.LoginActivity" />
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"/>
-        <activity android:name=".activity.MainActivity">
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

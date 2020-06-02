@@ -2,10 +2,10 @@ package berthier.antoine.birudroid.util
 
 import android.app.Activity
 import android.widget.Toast
+import berthier.antoine.birudroid.model.Beer
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 class FirebaseUtil {
     companion object Instance{
@@ -16,6 +16,8 @@ class FirebaseUtil {
         lateinit var authListener: FirebaseAuth.AuthStateListener;
         lateinit var databaseReference: DatabaseReference;
         var fireBaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance();
+        var beerList: ArrayList<Beer> = ArrayList();
+
 
         fun openFbreference(callerActivity: Activity, ref: String = "beers"){
             fireBaseAuth = FirebaseAuth.getInstance();
@@ -25,7 +27,6 @@ class FirebaseUtil {
             }
             databaseReference = fireBaseDatabase.reference.child(ref);
         }
-
         private fun signIn(callerActivity: Activity){
             // Choose authentication providers
             val providers = arrayListOf(

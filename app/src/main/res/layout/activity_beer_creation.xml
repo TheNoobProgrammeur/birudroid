@@ -3,115 +3,165 @@
 <!--
 
 -->
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/AppThemeActivityAlone"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.BeerCreation">
+    android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="117dp"
-        android:layout_height="119dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="120dp"
-        android:theme="@style/AppThemeActivityAlone"
-        app:cardCornerRadius="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/AppThemeActivityAlone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.BeerCreation">
 
-        <ImageView
-            android:id="@+id/beerPictureCV"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_login_logo" />
-    </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="117dp"
+            android:layout_height="119dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="80dp"
+            android:theme="@style/AppThemeActivityAlone"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/create_title_text"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:backgroundTint="@color/colorPrimary"
-        app:itemIconTint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.92"
-        app:rippleColor="@color/black"
-        app:srcCompat="@drawable/ic_add" />
+            <ImageView
+                android:id="@+id/beerPictureCV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/margin_icon_in_card"
+                android:layout_marginTop="@dimen/margin_icon_in_card"
+                android:layout_marginEnd="@dimen/margin_icon_in_card"
+                android:layout_marginBottom="@dimen/margin_icon_in_card"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/plus_circle_outline"
+                android:contentDescription="@string/adding_beer" />
+        </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="337dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:textColorHint="#878787"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.807"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.461">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/beerNameInput"
+            android:layout_height="@dimen/input_height"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_side"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="@dimen/padding_side"
+            android:ems="10"
             android:hint="@string/beer_name"
             android:inputType="text"
-            android:textAlignment="viewStart" />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.473"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-    <EditText
-        android:id="@+id/beerDegree"
-        android:layout_width="322dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="@string/beer_degree"
-        android:inputType="number"
-        android:textColorHint="#878787"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        <EditText
+            android:id="@+id/beerDegree"
+            android:layout_height="@dimen/input_height"
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/padding_side"
+            android:layout_marginTop="@dimen/margin_top_form"
+            android:layout_marginEnd="@dimen/padding_side"
+            android:ems="10"
+            android:hint="@string/beer_degree"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/beerNameInput" />
 
-    <EditText
-        android:id="@+id/beerBrand"
-        android:layout_width="243dp"
-        android:layout_height="44dp"
-        android:ems="10"
-        android:hint="@string/beer_brand"
-        android:inputType="textPersonName"
-        android:textColorHint="#878787"
-        app:layout_constraintBottom_toTopOf="@+id/beerType"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.261"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/beerDegree"
-        app:layout_constraintVertical_bias="0.48" />
+        <EditText
+            android:id="@+id/beerBrand"
+            android:layout_height="@dimen/input_height"
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/padding_side"
+            android:layout_marginEnd="@dimen/padding_side"
+            android:layout_marginTop="@dimen/margin_top_form"
+            android:ems="10"
+            android:hint="@string/beer_brand"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/beerDegree"
+            />
 
-    <Spinner
-        android:id="@+id/beerType"
-        android:layout_width="300dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="96dp"
-        android:hint="@string/beer_type"
-        android:textColorHint="#878787"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.396"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/beerDegree" />
+        <Spinner
+            android:id="@+id/beerType"
+            android:layout_height="@dimen/input_height"
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/padding_side"
+            android:layout_marginEnd="@dimen/padding_side"
+            android:layout_marginTop="@dimen/margin_top_label"
+            android:hint="@string/beer_type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/type_beer_label" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:backgroundTint="@color/colorPrimary"
+            app:itemIconTint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.95"
+            app:rippleColor="@color/black"
+            app:srcCompat="@drawable/content_save" />
+
+        <TextView
+            android:id="@+id/create_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_title"
+            android:text="@string/add_beer_title"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/type_beer_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_side"
+            android:layout_marginTop="28dp"
+            android:hint="@string/beer_type_label"
+            android:text="@string/beer_type_label"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/beerBrand" />
+
+        <EditText
+            android:id="@+id/beerDescription"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/padding_side"
+            android:layout_marginEnd="@dimen/padding_side"
+            android:layout_marginTop="@dimen/margin_top_form"
+            android:ems="10"
+            android:hint="@string/beer_description"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:maxLength="2000"
+            android:maxLines="4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/beerType" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

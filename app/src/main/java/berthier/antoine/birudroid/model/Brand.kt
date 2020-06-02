@@ -1,7 +1,10 @@
 package berthier.antoine.birudroid.model
 
-data class Brand(var id:String,
-                 var name:String,
-                 var description:String) {
+import java.io.Serializable
+
+data class Brand(var id:String = "Null",
+                 var name:String  = "Null",
+                 var description:String  = "Null") : Serializable {
+
 
 }

@@ -7,17 +7,30 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import berthier.antoine.birudroid.R
+import berthier.antoine.birudroid.adapter.BeerAdapter
+import berthier.antoine.birudroid.model.Beer
 import berthier.antoine.birudroid.util.FirebaseUtil
 import com.google.android.material.bottomnavigation.BottomNavigationMenu
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var firebaseAuth: FirebaseAuth
+    lateinit var listBeer: ArrayList<Beer>;
+    private lateinit var _fireBaseDatase: FirebaseDatabase;
+    private lateinit var _databaseReference: DatabaseReference;
+    private lateinit var _childEventListener: ChildEventListener;
+    private lateinit var rvBeer: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +38,8 @@ class MainActivity : AppCompatActivity() {
         FirebaseUtil.openFbreference(this)
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseAuth.addAuthStateListener(FirebaseUtil.authStateListener)
+
+
         val navBar: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
         /*
@@ -40,12 +55,23 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
     }
 
     override fun onResume() {
         super.onResume()
+        FirebaseUtil.beerList.clear()
+        rvBeer = findViewById(R.id.rvBeers);
+        val adapter = BeerAdapter(FirebaseUtil);
+        rvBeer.adapter = adapter;
+        val beersLayoutManager: LinearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        rvBeer.layoutManager = beersLayoutManager;
+        //FirebaseUtil.openFbreference( this, "beers")
     }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflaterLogin: MenuInflater = menuInflater

@@ -16,6 +16,11 @@
         <!-- colorPrimaryDark-->
         <item name="cardBackgroundColor">@color/colorPrimaryDark</item>
         <item name="cardViewStyle">@color/colorPrimaryDark</item>
-
     </style>
+
+    <!-- these line under are for the color of the bottom navigation bar -->
+    <style name="ThemeBottomNavigationBAr" parent="@style/AppTheme">
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
+
 </resources>
